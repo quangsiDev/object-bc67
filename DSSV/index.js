@@ -100,3 +100,5 @@ function capNhatSv() {
 
 var names = ["alice"];
 names[0] = "alice nguyễn";
+
+// regex email
