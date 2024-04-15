@@ -5,32 +5,27 @@ var dataJson = localStorage.getItem("DSSV");
 // kiểm tra data lấy lên khác null
 if (dataJson !== null) {
   dssv = JSON.parse(dataJson);
+  // convert array object không có method ( method bị mất khi stringtify ) trở thành 1 array object có method
+  for (var i = 0; i < dssv.length; i++) {
+    var item = dssv[i];
+    var sv = new SinhVien(
+      item.ma,
+      item.ten,
+      item.email,
+      item.matKhau,
+      item.toan,
+      item.ly,
+      item.hoa
+    );
+    dssv[i] = sv;
+  }
   // render lại table sau khi lấy data thàng công
   renderDssv();
 }
 function themSv() {
-  console.log("yes");
-  //   lấy thông tin từ form
-  var ma = document.getElementById("txtMaSV").value;
-  var ten = document.getElementById("txtTenSV").value;
-  var email = document.getElementById("txtEmail").value;
-  var matKhau = document.getElementById("txtPass").value;
-  var toan = document.getElementById("txtDiemToan").value;
-  var ly = document.getElementById("txtDiemLy").value;
-  var hoa = document.getElementById("txtDiemHoa").value;
-  //   tạo object
-  var sv = {
-    ma: ma,
-    ten: ten,
-    email: email,
-    matKhau: matKhau,
-    toan: toan,
-    hoa: hoa,
-    ly: ly,
-    tinhDTB: function () {
-      return (this.toan + this.ly + this.hoa) / 3;
-    },
-  };
+  var sv = layThongTinTuForm();
+  // validate
+  kiemTraRong(sv.ma, "spanMaSV");
   dssv.push(sv);
   //lưu dssv vào localStorage => 2 bước : 1. convert data to json, 2. lưu json vào localStorage
 
@@ -76,7 +71,20 @@ function resetForm() {
   // bỏ thuộc readOnly của thẻ input
   document.getElementById("txtMaSV").readOnly = false;
 }
-function capNhatSv() {}
+function capNhatSv() {
+  // lấy thông tin từ form
+  // tìm index từ id
+  // update  dssv[index]= sv
+  // render lại table sinh viên
+  var sv = layThongTinTuForm();
+  console.log("😀 - sv", sv);
+  var index = dssv.findIndex(function (item) {
+    return item.ma == sv.ma;
+  });
+  dssv[index] = sv;
+  renderDssv();
+}
+
 // localstorage sessionstorage cookies
 
 // localstorage ~ giữ lại data khi close trình duyệt

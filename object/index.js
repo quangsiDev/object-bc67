@@ -75,10 +75,13 @@ newColors.push("black");
 // tạo lớp đối tượng con mèo
 
 function Cat(_color, _name) {
-  this.color = _color;
-  this.name = name;
+  this.color_cat = _color;
+  this.name = _name;
+  this.speak = function () {
+    console.log("meo meo");
+  };
 }
-// tạo object mèo
+// tạo object mèo từ lớp đối tượng mèo => xử dụng "new"
 var cat1 = new Cat("black", "mun");
 console.log("😀 - cat1", cat1);
 var cat2 = new Cat("white", "miu");
