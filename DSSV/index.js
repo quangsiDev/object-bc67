@@ -76,6 +76,7 @@ function resetForm() {
   // bỏ thuộc readOnly của thẻ input
   document.getElementById("txtMaSV").readOnly = false;
 }
+function capNhatSv() {}
 // localstorage sessionstorage cookies
 
 // localstorage ~ giữ lại data khi close trình duyệt

@@ -57,3 +57,29 @@ var sanPham = {
 };
 var result = sanPham.tinhTien();
 console.log("😀 - result", result);
+
+var cat1 = { color: "black" };
+
+var cat2 = cat1;
+cat2.color = "white";
+console.log("😀 - cat1", cat1);
+console.log("😀 - cat2", cat2);
+
+var colors = ["red"];
+var newColors = colors;
+newColors.push("black");
+//   colors.length = ?
+
+// lớp đối tượng ~ class
+
+// tạo lớp đối tượng con mèo
+
+function Cat(_color, _name) {
+  this.color = _color;
+  this.name = name;
+}
+// tạo object mèo
+var cat1 = new Cat("black", "mun");
+console.log("😀 - cat1", cat1);
+var cat2 = new Cat("white", "miu");
+console.log("😀 - cat2", cat2);
