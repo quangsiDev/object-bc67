@@ -6,6 +6,7 @@ function kiemTraRong(value, idErr) {
     document.getElementById(idErr).innerText = "Nội dung này không được bỏ trống";
     return false;
   } else {
+    document.getElementById(idErr).innerText = "";
     return true;
   }
 }

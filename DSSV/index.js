@@ -25,13 +25,16 @@ if (dataJson !== null) {
 function themSv() {
   var sv = layThongTinTuForm();
   // validate
-  kiemTraRong(sv.ma, "spanMaSV");
-  dssv.push(sv);
-  //lưu dssv vào localStorage => 2 bước : 1. convert data to json, 2. lưu json vào localStorage
+  // a() && b()  , nếu a sai thì dòng lệnh kết thúc tại && ( b không được chạy)=> dùng & thay cho &&
+  var isValid = kiemTraRong(sv.ma, "spanMaSV") & kiemTraRong(sv.ten, "spanTenSV");
+  if (isValid == true) {
+    dssv.push(sv);
+    //lưu dssv vào localStorage => 2 bước : 1. convert data to json, 2. lưu json vào localStorage
 
-  var dataJson = JSON.stringify(dssv);
-  localStorage.setItem("DSSV", dataJson);
-  renderDssv();
+    var dataJson = JSON.stringify(dssv);
+    localStorage.setItem("DSSV", dataJson);
+    renderDssv();
+  }
 }
 
 function xoaSv(id) {
