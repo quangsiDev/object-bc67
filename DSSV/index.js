@@ -26,11 +26,17 @@ function themSv() {
   var sv = layThongTinTuForm();
   // validate
   // a() && b()  , nếu a sai thì dòng lệnh kết thúc tại && ( b không được chạy)=> dùng & thay cho &&
-  var isValid = kiemTraRong(sv.ma, "spanMaSV") & kiemTraRong(sv.ten, "spanTenSV");
+  // validate mã sv
+  var isValid = kiemTraRong(sv.ma, "spanMaSV");
+  // validate tên sv
+  isValid =
+    isValid & (kiemTraRong(sv.ten, "spanTenSV") && kiemTraDoDai(sv.ten, "spanTenSV", 3, 20));
+  // validate email
+  isValid &= kiemTraEmail(sv.email);
+  isValid = isValid & kiemTraDoDai(sv.matKhau, "spanMatKhau", 6, 12);
   if (isValid == true) {
     dssv.push(sv);
     //lưu dssv vào localStorage => 2 bước : 1. convert data to json, 2. lưu json vào localStorage
-
     var dataJson = JSON.stringify(dssv);
     localStorage.setItem("DSSV", dataJson);
     renderDssv();
